@@ -19,14 +19,42 @@ public class JSONControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void testArray() throws Exception {
+    public void testFlight() throws Exception {
         this.mvc.perform(
-                        get("/json/people")
+                        get("/flights/flight")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].firstName", is("Dwayne")))
-                .andExpect(jsonPath("$[0].lastName", is("Johnson")));
+                .andExpect(jsonPath("$.Departs", is("2021-09-21@12:00")))
+                .andExpect(jsonPath("$.Tickets[0].Passenger.FirstName", is("John")));
+    }
+    @Test
+    public void testFlights() throws Exception {
+        this.mvc.perform(
+                        get("/flights")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].Tickets[0].Passenger.FirstName", is("John")));
     }
 
+    @Test
+    public void testFlightsCreatesTwoFlights() throws Exception {
+        this.mvc.perform(
+                        get("/flights")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[1].Tickets[0].Passenger.FirstName", is("Mar")));
+    }
+
+    @Test
+    void testTicketHasPrice() throws Exception {
+        this.mvc.perform(
+        get("/flights")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[1].Tickets[0].Price", is(450.0)));
+    }
 }

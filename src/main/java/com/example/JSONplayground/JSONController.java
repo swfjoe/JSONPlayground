@@ -1,11 +1,10 @@
 package com.example.JSONplayground;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Time;
 import java.util.*;
 
 @RestController
@@ -29,7 +28,7 @@ public class JSONController {
 
         Passenger passenger2 = new Passenger();
         passenger2.setFirstName("Mar");
-        passenger2.setLastName("Camel");
+        passenger2.setLastName("\uD83D\uDC2B");
 
         Ticket ticket2 = new Ticket();
         ticket2.setPrice(450d);
@@ -61,7 +60,7 @@ public class JSONController {
 
         Passenger passenger2 = new Passenger();
         passenger2.setFirstName("Mar");
-        passenger2.setLastName("Camel");
+        passenger2.setLastName("\uD83D\uDC2B");
 
         Ticket ticket2 = new Ticket();
         ticket2.setPrice(450d);
@@ -83,10 +82,10 @@ public class JSONController {
 
         Date date = calendar.getTime();
 
-        flight1.setDepartsOn(date);
         flight1.addTicket(ticket1);
         flight1.addTicket(ticket2);
         flight1.addTicket(ticket3);
+        flight1.setDepartsOn(date);
 
         return flight1;
     }

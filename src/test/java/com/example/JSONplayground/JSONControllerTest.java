@@ -25,7 +25,7 @@ public class JSONControllerTest {
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.Departs", is("2021-09-21@12:00")))
+                .andExpect(jsonPath("$.Departs", is("2021-09-21@14:00")))
                 .andExpect(jsonPath("$.Tickets[0].Passenger.FirstName", is("John")));
     }
     @Test

@@ -81,7 +81,8 @@ public class JsonControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(testString))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"result\":350.0}"));
+                .andExpect(content().string("{\"result\":350.0}"))
+                .andExpect(jsonPath("$.result", is(350.0)));
     }
 
     @Test
@@ -105,7 +106,8 @@ public class JsonControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"result\":500.0}"));
+                .andExpect(content().string("{\"result\":500.0}"))
+                .andExpect(jsonPath("$.result", is(500.0)));
     }
 
     @Test
@@ -118,7 +120,8 @@ public class JsonControllerTest {
 
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"result\":800.0}"));
+                .andExpect(content().string("{\"result\":800.0}"))
+                .andExpect(jsonPath("$.result", is(800.0)));
     }
 
         private String getJSON(String path) throws Exception {
@@ -152,6 +155,7 @@ public class JsonControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"result\":500.0}"));
+                .andExpect(content().string("{\"result\":500.0}"))
+                .andExpect(jsonPath("$.result", is(500.0)));
     }
 }

@@ -1,4 +1,4 @@
-package com.example.JSONplayground;
+package com.example.JsonPlayground;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/flights")
-public class JSONController {
+public class JsonController {
 
     @GetMapping("")
     public List<Flight> getFlights() {
@@ -75,9 +75,6 @@ public class JSONController {
         ticket3.setPassenger(passenger3);
 
         Calendar calendar = Calendar.getInstance();
-        TimeZone zone = TimeZone.getTimeZone("America/Chicago");
-
-        calendar.setTimeZone(zone);
         calendar.set(2021, Calendar.SEPTEMBER, 21, 14, 00);
 
         Date date = calendar.getTime();

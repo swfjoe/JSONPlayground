@@ -1,4 +1,4 @@
-package com.example.JSONplayground;
+package com.example.JsonPlayground;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@WebMvcTest(JSONController.class)
-public class JSONControllerTest {
+@WebMvcTest(JsonController.class)
+public class JsonControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -51,9 +51,9 @@ public class JSONControllerTest {
     @Test
     void testTicketHasPrice() throws Exception {
         this.mvc.perform(
-        get("/flights")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON))
+                        get("/flights")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[1].Tickets[0].Price", is(450.0)));
     }

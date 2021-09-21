@@ -1,4 +1,4 @@
-package com.example.JSONplayground;
+package com.example.JsonPlayground;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +12,7 @@ class Flight {
     @JsonProperty("Departs")
     private Date departsOn;
     @JsonProperty("Tickets")
-    private List<Ticket> ticketList = new ArrayList<Ticket>();
+    private List<Ticket> ticketList = new ArrayList<>();
     public List<Ticket> getTicketList() {
         return ticketList;
     }

@@ -1,4 +1,4 @@
-package com.example.JSONplayground;
+package com.example.JsonPlayground;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

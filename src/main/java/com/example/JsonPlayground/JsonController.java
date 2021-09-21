@@ -1,9 +1,7 @@
 package com.example.JsonPlayground;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -85,5 +83,19 @@ public class JsonController {
         flight1.setDepartsOn(date);
 
         return flight1;
+    }
+
+    @PostMapping("/tickets/total")
+    public Map<String, Double> getFlightTicketSum(@RequestBody Flight newFlight){
+        double flightTicketSum = 0.0d;
+
+        for (Ticket ticket : newFlight.getTickets()) {
+            flightTicketSum += ticket.getPrice();
+        }
+
+        Map<String, Double> result = new HashMap<>();
+        result.put("result", flightTicketSum);
+
+        return result;
     }
 }

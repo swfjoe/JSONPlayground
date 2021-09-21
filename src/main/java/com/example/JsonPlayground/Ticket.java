@@ -1,15 +1,16 @@
 package com.example.JsonPlayground;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Ticket {
 
-    @JsonProperty("Passenger")
-    private Passenger passenger;
-    private Double price;
 
-    public Double getPrice() {
+    private Passenger passenger;
+    private double price;
+
+    public double getPrice() {
         return price;
     }
 
@@ -17,12 +18,13 @@ public class Ticket {
         return passenger;
     }
 
+    //@JsonSetter("Passenger")
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
 
-    @JsonProperty("Price")
-    public void setPrice(Double price) {
+    //@JsonSetter("Price")
+    public void setPrice(double price) {
         this.price = price;
     }
 }

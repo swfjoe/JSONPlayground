@@ -11,6 +11,9 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -122,5 +125,33 @@ public class JsonControllerTest {
             URL url = this.getClass().getResource(path);
             return new String(Files.readAllBytes(Paths.get(url.getFile())));
 
+    }
+
+    @Test
+    public void testSendsJsonAsJacksonSerializedMap() throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+
+        HashMap<String, List<Ticket>> flightMap = new HashMap<>();
+        List<Ticket> ticketList = new ArrayList<>();
+
+        Ticket testTicket = new Ticket();
+        Passenger testPassenger = new Passenger();
+
+        testPassenger.setFirstName("Bob");
+        testPassenger.setLastName("Smith");
+        testTicket.setPassenger(testPassenger);
+        testTicket.setPrice(500.0);
+
+        ticketList.add(testTicket);
+        flightMap.put("tickets", ticketList);
+
+        String body = mapper.writeValueAsString(flightMap);
+
+
+        this.mvc.perform(post("/flights/tickets/total")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"result\":500.0}"));
     }
 }

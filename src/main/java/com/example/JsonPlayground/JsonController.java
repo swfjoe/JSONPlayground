@@ -98,4 +98,9 @@ public class JsonController {
 
         return result;
     }
+
+    @PostMapping("/tickets/total/test")
+    public Flight getFlightTest(@RequestBody Flight newFlight) {
+        return newFlight;
+    }
 }
